@@ -44,7 +44,7 @@ class Product {
   #price = 0;
 
   constructor(name, price, manufacturedDate) {
-    if ( this.constructor.validateName(name) === null ) this.name = name;
+    if ( this.constructor.validateName(name) === null ) this.name = name.trim().replace(/\s+/g, ' ');
     this.price = price;
     this.manufacturedDate = manufacturedDate;
   }
@@ -65,7 +65,7 @@ class Product {
     return Math.floor( (new Date() - this.manufacturedDate) / (1000 * 60 * 60 * 24) )
   }
   static validateName(name) {
-    if ( typeof name === 'string' && name.replace(/\s+/g, '').length > 2 ) return null;
+    if ( typeof name === 'string' && name.trim().replace(/\s+/g, '').length > 2 ) return null;
     else throw new ValidationError("The name you entered is invalid.");
   }
 }
@@ -106,9 +106,9 @@ try {
   console.log(tuna.getInfo()); // [Sea] Tuna costs $190
   console.log("Days old:", tuna.getAge());
 
-  const orange = new LandProduct("Orange", 10, new Date(2025, 6, 15));
-  console.log('\n' + orange.getInfo());
-  console.log("Day old:", orange.getAge());
+  const sweetOrange = new LandProduct(" Sweet  Orange  ", 10, new Date(2025, 6, 15));
+  console.log('\n' + sweetOrange.getInfo());
+  console.log("Day old:", sweetOrange.getAge());
 
   // Uncomment below to test error
   // Product.validateName(""); // should throw ValidationError
