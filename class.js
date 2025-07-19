@@ -65,7 +65,7 @@ class Product {
     return Math.floor( (new Date() - this.manufacturedDate) / (1000 * 60 * 60 * 24) )
   }
   static validateName(name) {
-    if ( typeof name === 'string' && name.trim().replace(/\s+/g, '').length > 2 ) return null;
+    if ( typeof name === 'string' && name.trim().replace(/\s+/g, ' ').length > 2 ) return null;
     else throw new ValidationError("The name you entered is invalid.");
   }
 }
